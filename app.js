@@ -15,7 +15,9 @@ const init = () => {
     if (fileExists) {
         let filesStream$  = fs.createReadStream(fileDefault, fileType);
         filesStream$.on('error', err => errorService.handleError(err));
-        filesStream$.on('data', data => console.log(processFileContents(data)));
+        filesStream$.on('data', data => console.log(processFileContents(data)
+        .map(user => `Name: ${user.name}, User Id: ${user.user_id}`)
+            .join('\n')));
     } else {
         errorService.handleError('File customer-list.json is not in ./assets');
     }
