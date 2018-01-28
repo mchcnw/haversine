@@ -42,7 +42,7 @@ const filterCustomersWithinDistanceKm = (customers, distance) => {
     try {
         return customers && customers.filter(customer => {
             const {latitude, longitude} = customer;
-            return haversineService.calculateDistance(officeLatitude, latitude, officeLongitude,longitude) < distance;
+            return haversineService.calculateDistance(officeLatitude, latitude, officeLongitude,longitude) <= distance;
         });
     } catch (error) {
         errorService.handleError(error);
